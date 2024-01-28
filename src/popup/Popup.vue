@@ -7,6 +7,7 @@ function openOptionsPage() {
 }
 
 const htmlOfCopied = ref('')
+
 browser.tabs.query({
   active: true,
   currentWindow: true,
@@ -21,6 +22,7 @@ browser.tabs.query({
     <SharedSubtitle />
 
     <div v-html="htmlOfCopied" />
+
     <button class="btn mt-2" @click="openOptionsPage">
       Open Options
     </button>
