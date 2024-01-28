@@ -62,6 +62,13 @@ export async function getManifest() {
         ? `script-src \'self\' http://localhost:${port}; object-src \'self\'`
         : 'script-src \'self\'; object-src \'self\'',
     },
+    commands: {
+      _execute_browser_action: {
+        suggested_key: {
+          default: 'Alt+C',
+        },
+      },
+    },
   }
 
   // FIXME: not work in MV3
