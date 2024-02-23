@@ -14,7 +14,8 @@
     "noUnusedLocals": true,
     "forceConsistentCasingInFileNames": true,
     "types": [
-      "vite/client"
+      "vite/client",
+      "unplugin-icons/types/vue" // https://github.com/unplugin/unplugin-icons/issues/204#issuecomment-1157570814
     ],
     "paths": {
       "~/*": ["src/*"]
