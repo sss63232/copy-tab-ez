@@ -1,5 +1,8 @@
 {
-  "cSpell.words": ["Vitesse"],
+  "cSpell.words": [
+    "unplugin",
+    "Vitesse"
+  ],
   "typescript.tsdk": "node_modules/typescript/lib",
   "vite.autoStart": false,
   "editor.codeActionsOnSave": {
