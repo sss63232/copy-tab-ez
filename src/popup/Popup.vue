@@ -7,21 +7,52 @@ function openOptionsPage() {
   browser.runtime.openOptionsPage()
 }
 
-const htmlOfCopied = ref('')
+async function getCurrentTab() {
+  const tabs = await browser.tabs.query({
+    active: true,
+    currentWindow: true,
+  })
 
-browser.tabs.query({
-  active: true,
-  currentWindow: true,
-}).then(tabs => marked.parse(`[${tabs[0].title}](${tabs[0].url})`))
-  .then(html => htmlOfCopied.value = html)
+  return tabs[0]
+}
+
+const markdown = ref('')
+const parsedMarkdown = ref('')
+
+getCurrentTab()
+  .then((tab) => {
+    const { title, url } = tab
+    markdown.value = `[${title}](${url})`
+    return marked.parse(markdown.value)
+  })
+  .then(parsed => parsedMarkdown.value = parsed)
 </script>
 
 <template>
-  <main class="w-[300px] px-4 py-5 text-center text-gray-700">
-    <EpSuccessFilled class="text-green-700 text-4xl mx-auto" />
-    <SharedSubtitle />
+  <main class="px-4 py-5 text-center text-gray-700">
+    <h1 class="text-6 mb-2">
+      Successfully Copied
+    </h1>
+    <EpSuccessFilled class="text-green-700 text-4xl mx-auto mb-2" />
 
-    <div v-html="htmlOfCopied" />
+    <table>
+      <tbody>
+        <tr>
+          <th class="border px-2 py-1">
+            Content in Clipboard:
+          </th>
+          <td class="border px-2 py-1">
+            {{ markdown }}
+          </td>
+        </tr>
+        <tr>
+          <th class="border px-2 py-1">
+            After Render:
+          </th>
+          <td class="border px-2 py-1" v-html="parsedMarkdown" />
+        </tr>
+      </tbody>
+    </table>
 
     <button class="btn mt-2" @click="openOptionsPage">
       Open Options
