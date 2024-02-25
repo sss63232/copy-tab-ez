@@ -63,10 +63,12 @@ export async function getManifest() {
         : 'script-src \'self\'; object-src \'self\'',
     },
     commands: {
-      _execute_browser_action: {
+      _execute_action: {
         suggested_key: {
           default: 'Alt+C',
+          mac: 'Alt+C',
         },
+        description: 'Copy',
       },
     },
   }
